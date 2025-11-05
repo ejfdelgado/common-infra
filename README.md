@@ -19,3 +19,11 @@ y para ambiente de producción usar:
 ```
 terraform workspace select pro && terraform apply -var-file="env.pro.tfvars" && ffplay /sound/finish.mp3 -nodisp -nostats -hide_banner -autoexit
 ```
+
+```
+terraform workspace select pro && terraform import google_storage_bucket.static_site_old pro-ejflab-assets
+```
+
+```
+terraform workspace select stg && terraform import google_storage_bucket.static_site_old stg-ejflab-assets
+```
