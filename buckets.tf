@@ -14,8 +14,8 @@ resource "google_storage_bucket" "static_site" {
       "https://${var.environment}-${local.bucket_name}.storage.googleapis.com",
       "http://${var.environment}-${local.bucket_name}.storage.googleapis.com"
     ]
-    method          = ["GET"]
-    response_header = ["Content-Type", "Authorization"]
+    method          = ["GET", "HEAD", "OPTIONS"]
+    response_header = ["Content-Type", "Authorization", "Access-Control-Allow-Origin"]
     max_age_seconds = 3600
   }
 }
