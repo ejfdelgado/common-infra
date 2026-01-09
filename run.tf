@@ -16,7 +16,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "BUCKET_NAME"
-        value = "${var.environment}-ejflab-assets"
+        value = google_storage_bucket.bucket_service.name
       }
       env {
         name  = "LOCAL_FOLDER"
@@ -65,7 +65,7 @@ resource "google_service_account" "common_backend_sa" {
 }
 
 resource "google_storage_bucket_iam_member" "common_backend_admin" {
-  bucket = "${var.environment}-ejflab-assets"
+  bucket = google_storage_bucket.bucket_service.name
   role   = "roles/storage.admin"
   member = "serviceAccount:${google_service_account.common_backend_sa.email}"
 }
