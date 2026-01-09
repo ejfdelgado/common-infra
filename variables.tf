@@ -57,3 +57,9 @@ variable "layer" {
   type        = string
   default     = "test"
 }
+
+variable "common_backend_image" {
+  description = "Node Server Image"
+  type        = string
+  default     = "us-central1-docker.pkg.dev/ejfexperiments/ejfexperiments/common_backend:1.0.0"
+}
