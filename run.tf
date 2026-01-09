@@ -12,7 +12,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "CORS_MAIN_ALLOWED_ORIGIN"
-        value = "http://localhost:4200 https://localhost:4200 https://stg-playtolearn.storage.googleapis.com https://pro-playtolearn.storage.googleapis.com"
+        value = "http://localhost:4200,https://localhost:4200,https://stg-playtolearn.storage.googleapis.com,https://pro-playtolearn.storage.googleapis.com"
       }
       env {
         name  = "BUCKET_NAME"
