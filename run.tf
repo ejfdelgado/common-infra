@@ -12,7 +12,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "CORS_MAIN_ALLOWED_ORIGIN"
-        value = "http://localhost:4200 https://localhost:4200"
+        value = "http://localhost:4200 https://localhost:4200 https://stg-playtolearn.storage.googleapis.com https://pro-playtolearn.storage.googleapis.com"
       }
       env {
         name  = "BUCKET_NAME"
@@ -20,7 +20,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "LOCAL_FOLDER"
-        value = "/tmp"
+        value = "/mnt/data"
       }
       env {
         name  = "NODE_ENV"
@@ -35,10 +35,27 @@ resource "google_cloud_run_v2_service" "common_backend" {
           cpu = "1"
         }
       }
+      
+      volume_mounts {
+        name       = "gcs-volume"
+        mount_path = "/mnt/data"
+      }
     }
     scaling {
       min_instance_count = 0
       max_instance_count = 1
+    }
+    volumes {
+      name = "gcs-volume"
+      gcs {
+        bucket    = google_storage_bucket.bucket_service.name
+        read_only = false
+        mount_options = [
+          "implicit-dirs",
+          "uid=1000",
+          "gid=1000"
+        ]
+      }
     }
   }
   # Allow unauthenticated invocations
@@ -67,6 +84,12 @@ resource "google_service_account" "common_backend_sa" {
 resource "google_storage_bucket_iam_member" "common_backend_admin" {
   bucket = google_storage_bucket.bucket_service.name
   role   = "roles/storage.admin"
+  member = "serviceAccount:${google_service_account.common_backend_sa.email}"
+}
+
+resource "google_storage_bucket_iam_member" "common_backend_object_admin" {
+  bucket = google_storage_bucket.bucket_service.name
+  role   = "roles/storage.objectAdmin"
   member = "serviceAccount:${google_service_account.common_backend_sa.email}"
 }
 
