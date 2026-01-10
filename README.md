@@ -29,3 +29,7 @@ terraform workspace select pro && terraform import google_storage_bucket.static_
 ```
 terraform workspace select stg && terraform import google_storage_bucket.static_site_old stg-ejflab-assets
 ```
+
+```
+terraform import google_firestore_database.default "projects/ejfexperiments/databases/(default)"
+```
