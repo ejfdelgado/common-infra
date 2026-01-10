@@ -76,6 +76,8 @@ resource "google_cloud_run_service_iam_member" "no_auth" {
   depends_on = [google_cloud_run_v2_service.common_backend]
 }
 
+# The Service Account:
+
 resource "google_service_account" "common_backend_sa" {
   account_id   = "${var.environment}-common-backend-sa"
   display_name = "Service account for Express backend"
@@ -96,5 +98,11 @@ resource "google_storage_bucket_iam_member" "common_backend_object_admin" {
 resource "google_project_iam_member" "common_backend_logging" {
   project = var.project_name
   role    = "roles/logging.logWriter"
+  member  = "serviceAccount:${google_service_account.common_backend_sa.email}"
+}
+
+resource "google_project_iam_member" "firestore_access" {
+  project = var.project_name
+  role    = "roles/datastore.user"
   member  = "serviceAccount:${google_service_account.common_backend_sa.email}"
 }
