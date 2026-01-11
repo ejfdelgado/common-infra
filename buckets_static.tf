@@ -10,6 +10,7 @@ resource "google_storage_bucket" "static_site_old" {
     origin          = [
       "https://el.pais.tv", 
       "http://localhost:4200", 
+      "https://localhost:4200", 
       "https://pro-ejflab-assets.storage.googleapis.com",
       "https://stg-playtolearn.storage.googleapis.com",
       "https://pro-playtolearn.storage.googleapis.com"
