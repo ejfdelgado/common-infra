@@ -16,7 +16,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "BUCKET_NAME"
-        value = google_storage_bucket.bucket_service.name
+        value = google_storage_bucket.static_site_old.name
       }
       env {
         name  = "LOCAL_FOLDER"
@@ -48,7 +48,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
     volumes {
       name = "gcs-volume"
       gcs {
-        bucket    = google_storage_bucket.bucket_service.name
+        bucket    = google_storage_bucket.static_site_old.name
         read_only = false
         mount_options = [
           "implicit-dirs",
@@ -84,13 +84,13 @@ resource "google_service_account" "common_backend_sa" {
 }
 
 resource "google_storage_bucket_iam_member" "common_backend_admin" {
-  bucket = google_storage_bucket.bucket_service.name
+  bucket = google_storage_bucket.static_site_old.name
   role   = "roles/storage.admin"
   member = "serviceAccount:${google_service_account.common_backend_sa.email}"
 }
 
 resource "google_storage_bucket_iam_member" "common_backend_object_admin" {
-  bucket = google_storage_bucket.bucket_service.name
+  bucket = google_storage_bucket.static_site_old.name
   role   = "roles/storage.objectAdmin"
   member = "serviceAccount:${google_service_account.common_backend_sa.email}"
 }
