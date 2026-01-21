@@ -26,6 +26,10 @@ resource "google_cloud_run_v2_service" "common_backend" {
         name  = "NODE_ENV"
         value = var.environment
       }
+      env {
+        name  = "FIREBASE_SERVICE_ACCOUNT_PATH"
+        value = "/app/credentials/ejfexperiments-fb93b4482458.json"
+      }
 
       resources {
         limits = {
