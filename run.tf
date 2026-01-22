@@ -30,6 +30,10 @@ resource "google_cloud_run_v2_service" "common_backend" {
         name  = "FIREBASE_SERVICE_ACCOUNT_PATH"
         value = "/app/credentials/ejfexperiments-fb93b4482458.json"
       }
+      env {
+        name  = "REDIRECT_DOMAIN"
+        value = "https://stg-playtolearn.storage.googleapis.com"
+      }
 
       resources {
         limits = {
