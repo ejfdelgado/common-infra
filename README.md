@@ -16,7 +16,7 @@ Cada vez que se quiera aplicar la infraestructura para ambiente de calidad usar:
 terraform workspace select stg && terraform apply -var-file="env.stg.tfvars" && ffplay /sound/finish.mp3 -nodisp -nostats -hide_banner -autoexit
 ```
 
-y para ambiente de producción usar:
+y para ambiente de producción usar, ONLY use pro!
 
 ```
 terraform workspace select pro && terraform apply -var-file="env.pro.tfvars" && ffplay /sound/finish.mp3 -nodisp -nostats -hide_banner -autoexit
