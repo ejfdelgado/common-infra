@@ -63,15 +63,3 @@ variable "common_backend_image" {
   type        = string
   default     = ""
 }
-
-variable "local_public_key" {
-  description = "public key"
-  type        = string
-  default     = ""
-}
-
-variable "local_private_key" {
-  description = "private key"
-  type        = string
-  default     = ""
-}
