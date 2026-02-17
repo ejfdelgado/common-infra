@@ -36,11 +36,11 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "LOCAL_PUBLIC_KEY"
-        value = var.local_public_key
+        value = local.secrets.local_public_key
       }
       env {
         name  = "LOCAL_PRIVATE_KEY"
-        value = var.local_private_key
+        value = vlocal.secretsar.local_private_key
       }
 
       resources {
