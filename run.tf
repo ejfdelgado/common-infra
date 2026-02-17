@@ -34,6 +34,14 @@ resource "google_cloud_run_v2_service" "common_backend" {
         name  = "REDIRECT_DOMAIN"
         value = "https://stg-playtolearn.storage.googleapis.com"
       }
+      env {
+        name  = "LOCAL_PUBLIC_KEY"
+        value = var.local_public_key
+      }
+      env {
+        name  = "LOCAL_PRIVATE_KEY"
+        value = var.local_private_key
+      }
 
       resources {
         limits = {
