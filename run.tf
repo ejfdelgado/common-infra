@@ -40,7 +40,19 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "LOCAL_PRIVATE_KEY"
-        value = vlocal.secretsar.local_private_key
+        value = local.secrets.local_private_key
+      }
+      env {
+        name  = "GEMINI_API_KEY"
+        value = local.secrets.GEMINI_API_KEY
+      }
+      env {
+        name  = "GEMINI_MODEL"
+        value = local.secrets.GEMINI_MODEL
+      }
+      env {
+        name  = "GEMINI_PASS"
+        value = local.secrets.GEMINI_PASS
       }
 
       resources {
