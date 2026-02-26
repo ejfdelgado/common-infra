@@ -43,8 +43,8 @@ resource "google_cloud_run_v2_service" "common_backend" {
         value = local.secrets.local_private_key
       }
       env {
-        name  = "GEMINI_API_KEY"
-        value = local.secrets.GEMINI_API_KEY
+        name  = "GEMINI_ssrUGdrrj2Z5FtI8tt30faY8WWn2"
+        value = local.secrets.GEMINI_ssrUGdrrj2Z5FtI8tt30faY8WWn2
       }
       env {
         name  = "GEMINI_MODEL"
@@ -53,6 +53,14 @@ resource "google_cloud_run_v2_service" "common_backend" {
       env {
         name  = "GEMINI_PASS"
         value = local.secrets.GEMINI_PASS
+      }
+      env {
+        name  = "SEND_GRID_VARIABLE"
+        value = local.secrets.SEND_GRID_VARIABLE
+      }
+      env {
+        name  = "EMAIL_SENDER"
+        value = "info@pais.tv"
       }
 
       resources {
