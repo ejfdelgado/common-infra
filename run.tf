@@ -2,7 +2,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
   name     = "${var.environment}-common-backend"
   location = var.region
   template {
-    max_instance_request_concurrency = 20
+    max_instance_request_concurrency = 3
     service_account = google_service_account.common_backend_sa.email
     containers {
       image = var.common_backend_image
@@ -62,13 +62,17 @@ resource "google_cloud_run_v2_service" "common_backend" {
         name  = "EMAIL_SENDER"
         value = "info@pais.tv"
       }
+      env {
+        name = "SUPABASE_DATABASE_URL"
+        value = local.secrets.SUPABASE_DATABASE_URL
+      }
 
       resources {
         limits = {
           # 512Mi
-          memory = "2Gi"
+          memory = "8Gi"
           # '1', '2', '4', and '8' 1000m 250m 500m
-          cpu = "1"
+          cpu = "2"
         }
       }
       
@@ -79,7 +83,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
     }
     scaling {
       min_instance_count = 0
-      max_instance_count = 1
+      max_instance_count = 3
     }
     volumes {
       name = "gcs-volume"
