@@ -2,7 +2,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
   name     = "${var.environment}-common-backend"
   location = var.region
   template {
-    max_instance_request_concurrency = 3
+    max_instance_request_concurrency = 10
     service_account = google_service_account.common_backend_sa.email
     containers {
       image = var.common_backend_image
