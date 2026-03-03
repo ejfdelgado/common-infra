@@ -9,6 +9,8 @@ resource "google_storage_bucket" "static_site_old" {
   cors {
     origin          = [
       "https://el.pais.tv", 
+      "https://pais.tv", 
+      "https://chat.pais.tv", 
       "http://localhost:4200", 
       "https://localhost:4200", 
       "https://pro-ejflab-assets.storage.googleapis.com",

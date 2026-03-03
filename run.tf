@@ -12,7 +12,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "CORS_MAIN_ALLOWED_ORIGIN"
-        value = "http://localhost:4200,https://localhost:4200,https://stg-playtolearn.storage.googleapis.com,https://pro-playtolearn.storage.googleapis.com"
+        value = "http://localhost:4200,https://localhost:4200,https://stg-playtolearn.storage.googleapis.com,https://pro-playtolearn.storage.googleapis.com,https://chat.pais.tv,https://pais.tv,https://www.pais.tv"
       }
       env {
         name  = "BUCKET_NAME"
@@ -32,7 +32,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "REDIRECT_DOMAIN"
-        value = "https://stg-playtolearn.storage.googleapis.com"
+        value = "https://pais.tv"
       }
       env {
         name  = "LOCAL_PUBLIC_KEY"
