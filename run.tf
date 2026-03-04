@@ -63,6 +63,10 @@ resource "google_cloud_run_v2_service" "common_backend" {
         value = "info@pais.tv"
       }
       env {
+        name  = "EMAIL_CONTACT_US"
+        value = "info@pais.tv"
+      }
+      env {
         name = "SUPABASE_DATABASE_URL"
         value = local.secrets.SUPABASE_DATABASE_URL
       }
