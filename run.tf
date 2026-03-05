@@ -150,3 +150,19 @@ resource "google_project_iam_member" "firestore_access" {
   role    = "roles/datastore.user"
   member  = "serviceAccount:${google_service_account.common_backend_sa.email}"
 }
+
+/*
+It works because on Domain Service we have:
+cname	share	ghs.googlehosted.com.
+
+and, on google cloud we use domain mapping:
+https://console.cloud.google.com/run/domains?project=ejfexperiments
+*/
+
+resource "google_compute_managed_ssl_certificate" "share" {
+  count = var.environment == "pro" ? 1 : 0
+  name    = "${var.environment}-share"
+  managed {
+    domains = ["share.pais.tv."]
+  }
+}

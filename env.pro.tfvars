@@ -1,2 +1,2 @@
 environment="pro"
-common_backend_image="us-central1-docker.pkg.dev/ejfexperiments/ejfexperiments/common_backend:1.7.5"
+common_backend_image="us-central1-docker.pkg.dev/ejfexperiments/ejfexperiments/common_backend:1.7.7"
