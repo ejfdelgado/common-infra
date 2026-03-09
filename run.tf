@@ -11,6 +11,14 @@ resource "google_cloud_run_v2_service" "common_backend" {
         value = local.secrets.oauth_client_id
       }
       env {
+        name  = "GOOGLE_CLIENT_SECRET"
+        value = local.secrets.oauth_client_secret
+      }
+      env {
+        name  = "GOOGLE_REDIRECT_URI"
+        value = "https://chat.pais.tv/redirectejf"
+      }
+      env {
         name  = "CORS_MAIN_ALLOWED_ORIGIN"
         value = "https://chat.pais.tv,https://pais.tv,https://www.pais.tv,https://admin.pais.tv,https://docs.pais.tv,https://music.pais.tv,https://lrgame.pais.tv,https://notes.pais.tv"
       }
