@@ -16,7 +16,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "GOOGLE_REDIRECT_URI"
-        value = "https://chat.pais.tv/redirectejf"
+        value = "https://chat.pais.tv/admin/user/calendar/allow/callback"
       }
       env {
         name  = "CORS_MAIN_ALLOWED_ORIGIN"
