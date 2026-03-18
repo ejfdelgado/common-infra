@@ -20,7 +20,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "CORS_MAIN_ALLOWED_ORIGIN"
-        value = "https://chat.pais.tv,https://pais.tv,https://www.pais.tv,https://admin.pais.tv,https://docs.pais.tv,https://music.pais.tv,https://lrgame.pais.tv,https://notes.pais.tv"
+        value = "https://clients.pais.tv,https://chat.pais.tv,https://pais.tv,https://www.pais.tv,https://admin.pais.tv,https://docs.pais.tv,https://music.pais.tv,https://lrgame.pais.tv,https://notes.pais.tv"
       }
       env {
         name  = "BUCKET_NAME"
@@ -78,6 +78,11 @@ resource "google_cloud_run_v2_service" "common_backend" {
         name = "SUPABASE_DATABASE_URL"
         value = local.secrets.SUPABASE_DATABASE_URL
       }
+      env {
+        name = "DEFAULT_OFFLINE_AUTH"
+        value = local.secrets.DEFAULT_OFFLINE_AUTH
+      }
+      
 
       resources {
         limits = {
