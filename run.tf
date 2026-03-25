@@ -87,9 +87,9 @@ resource "google_cloud_run_v2_service" "common_backend" {
       resources {
         limits = {
           # 512Mi
-          memory = "8Gi"
+          memory = "4Gi"
           # '1', '2', '4', and '8' 1000m 250m 500m
-          cpu = "2"
+          cpu = "1"
         }
       }
       
@@ -100,7 +100,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
     }
     scaling {
       min_instance_count = 0
-      max_instance_count = 3
+      max_instance_count = 1
     }
     volumes {
       name = "gcs-volume"
