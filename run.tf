@@ -20,7 +20,7 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
       env {
         name  = "CORS_MAIN_ALLOWED_ORIGIN"
-        value = "https://clients.pais.tv,https://chat.pais.tv,https://pais.tv,https://www.pais.tv,https://admin.pais.tv,https://docs.pais.tv,https://music.pais.tv,https://lrgame.pais.tv,https://notes.pais.tv"
+        value = "https://clients.pais.tv,https://chat.pais.tv,https://pais.tv,https://www.pais.tv,https://admin.pais.tv,https://docs.pais.tv,https://music.pais.tv,https://lrgame.pais.tv,https://notes.pais.tv,https://pug.pais.tv"
       }
       env {
         name  = "BUCKET_NAME"
@@ -49,6 +49,10 @@ resource "google_cloud_run_v2_service" "common_backend" {
       env {
         name  = "LOCAL_PRIVATE_KEY"
         value = local.secrets.local_private_key
+      }
+      env {
+        name  = "DEFAULT_USER_UID"
+        value = "ssrUGdrrj2Z5FtI8tt30faY8WWn2"
       }
       env {
         name  = "GEMINI_ssrUGdrrj2Z5FtI8tt30faY8WWn2"

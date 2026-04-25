@@ -16,6 +16,7 @@ resource "google_storage_bucket" "static_site_old" {
       "https://lrgame.pais.tv", 
       "https://music.pais.tv", 
       "https://notes.pais.tv", 
+      "https://pug.pais.tv", 
       "http://localhost:4200", 
       "https://localhost:4200", 
       "https://pro-ejflab-assets.storage.googleapis.com",
