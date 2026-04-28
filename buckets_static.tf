@@ -7,22 +7,7 @@ resource "google_storage_bucket" "static_site_old" {
   }
   uniform_bucket_level_access = true
   cors {
-    origin          = [
-      "https://el.pais.tv", 
-      "https://pais.tv", 
-      "https://chat.pais.tv", 
-      "https://admin.pais.tv", 
-      "https://docs.pais.tv", 
-      "https://lrgame.pais.tv", 
-      "https://music.pais.tv", 
-      "https://notes.pais.tv", 
-      "https://pug.pais.tv", 
-      "http://localhost:4200", 
-      "https://localhost:4200", 
-      "https://pro-ejflab-assets.storage.googleapis.com",
-      "https://stg-playtolearn.storage.googleapis.com",
-      "https://pro-playtolearn.storage.googleapis.com"
-      ]
+    origin          = var.cors_allowed
     method          = ["GET", "HEAD", "OPTIONS"]
     response_header = ["Content-Type", "Authorization", "Access-Control-Allow-Origin"]
     max_age_seconds = 3600

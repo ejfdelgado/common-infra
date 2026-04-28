@@ -63,3 +63,22 @@ variable "common_backend_image" {
   type        = string
   default     = ""
 }
+
+variable "cors_allowed" {
+  description = "cors_allowed"
+  type        = list(string)
+  default     = [
+    "https://clients.pais.tv",
+    "https://chat.pais.tv",
+    "https://pais.tv",
+    "https://www.pais.tv",
+    "https://admin.pais.tv",
+    "https://docs.pais.tv",
+    "https://music.pais.tv",
+    "https://lrgame.pais.tv",
+    "https://notes.pais.tv",
+    "https://pug.pais.tv",
+    "https://paca.pais.tv",
+    "https://english.pais.tv"
+  ]
+}
