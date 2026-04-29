@@ -79,6 +79,8 @@ variable "cors_allowed" {
     "https://notes.pais.tv",
     "https://pug.pais.tv",
     "https://paca.pais.tv",
-    "https://english.pais.tv"
+    "https://english.pais.tv",
+    "https://localhost:4200",
+    "http://localhost:4200"
   ]
 }
