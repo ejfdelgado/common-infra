@@ -1,4 +1,4 @@
-# common-infra.
+# common-infra
 
 ```
 
