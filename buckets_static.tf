@@ -21,3 +21,11 @@ resource "google_storage_bucket_iam_binding" "public_read_get_only" {
     "allUsers"
   ]
 }
+
+resource "google_storage_bucket" "terraform_state" {
+  count                       = var.environment == "pro" ? 1 : 0
+  name                        = "${var.environment}-ejflab-terraform"
+  location                    = "US"
+  storage_class               = "STANDARD"
+  uniform_bucket_level_access = true
+}

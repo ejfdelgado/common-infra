@@ -2,7 +2,7 @@
 
 ```
 
-export GOOGLE_APPLICATION_CREDENTIALS=/home/ejfdelgado/desarrollo/ejflab-playground/credentials/ejfexperiments-c2ef2a890ca5.json
+export GOOGLE_APPLICATION_CREDENTIALS=/run/media/ubuntu/54cdff7d-b0af-4019-9109-017d1af36f70/home/ejfdelgado/desarrollo/common-secrets/ejfexperiments-e9b4de341343.json
 
 terraform init
 terraform plan
@@ -32,4 +32,10 @@ terraform workspace select stg && terraform import google_storage_bucket.static_
 
 ```
 terraform import google_firestore_database.default "projects/ejfexperiments/databases/(default)"
+```
+
+```
+terraform init \
+  -migrate-state \
+  -backend-config="bucket=pro-ejflab-terraform"
 ```

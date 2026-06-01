@@ -1,0 +1,47 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - pro
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    # Resolves to the GitHub Environment named 'stg' or 'pro' based on the branch.
+    # Each environment holds its own GCP_SA_KEY secret for the matching service account.
+    environment: ${{ github.ref_name }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Download secrets
+        run: |
+          mkdir -p common-secrets
+          gcloud storage cp -r gs://${{ github.ref_name }}-ejflab-terraform/common-secrets/${{ github.ref_name }}/* common-secrets/
+
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.13.3"
+
+      - name: Deploy using Terraform
+        run: |
+          # locals.tf resolves ../common-secrets/ relative to the module dir (repo root).
+          # In CI, that is one level above GITHUB_WORKSPACE, so copy the secrets there.
+          mkdir -p ../common-secrets
+          cp -r common-secrets/. ../common-secrets/
+
+          terraform init -backend-config="bucket=pro-ejflab-terraform"
+          terraform workspace select -or-create ${{ github.ref_name }}
+          terraform apply -auto-approve -var-file=env.${{ github.ref_name }}.tfvars
