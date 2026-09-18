@@ -35,6 +35,10 @@ resource "google_cloud_run_v2_service" "common_backend" {
         value = var.environment
       }
       env {
+        name  = "GOOGLE_CLOUD_PROJECT"
+        value = var.project_name
+      }
+      env {
         name  = "FIREBASE_SERVICE_ACCOUNT_PATH"
         value = "/app/credentials/ejfexperiments-fb93b4482458.json"
       }
