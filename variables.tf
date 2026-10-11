@@ -75,6 +75,7 @@ variable "cors_allowed" {
     "https://admin.pais.tv",
     "https://docs.pais.tv",
     "https://music.pais.tv",
+    "https://move-and-learn.pais.tv",
     "https://lrgame.pais.tv",
     "https://notes.pais.tv",
     "https://pug.pais.tv",
