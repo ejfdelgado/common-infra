@@ -107,8 +107,8 @@ resource "google_cloud_run_v2_service" "common_backend" {
       }
     }
     scaling {
-      min_instance_count = 0
-      max_instance_count = 1
+      min_instance_count = 1
+      max_instance_count = 2
     }
     volumes {
       name = "gcs-volume"
